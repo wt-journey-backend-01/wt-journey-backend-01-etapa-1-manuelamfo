@@ -55,3 +55,41 @@ app.get('/sugestao', (req, res) => {
 app.get('/contato', (req, res) => {
     res.sendFile(path.join(__dirname, 'views/contato.html'));
 });
+
+app.post('/contato', (req, res) => {
+    const {nome, email, assunto, mensagem} = req.body;
+    if(!nome || !email || !assunto || !mensagem) {
+        return res.send('<p>É necessário preencher todos os campos!</p>');
+    }
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>DevBurguer</title>
+                <link rel="stylesheet" href="/css/style.css">
+                <link rel="icon" href="/images/devburger-icon.ico" type="image/x-icon">
+            </head>
+            <body>
+                <header>
+                    <img src="/images/logo.png" alt="DevBurguer Logo" class="logo">
+                </header>
+            <main>
+                <h2>Recebemos a sua mensagem! Agradecemos pelo contato</h2>
+                <div class="message">
+                    <p><strong>Nome:</strong> ${nome}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Assunto:</strong> ${assunto}</p>
+                    <p><strong>Mensagem:</strong> ${mensagem}</p>
+                </div>
+            </main>
+            <p>Voltar para a página inicial</p>
+            <a href="/">Início</a>
+            <footer>
+                <p>&copy; 2025 DevBurguer. Todos os direitos reservados.</p>
+            </footer>
+        </body>
+    </html>`);
+
+});

@@ -33,6 +33,10 @@ h1 {
     letter-spacing: 1px;
 }
 
+header h1{
+    margin-bottom: 30px;
+}
+
 h2{
     text-align: center;
 }

@@ -159,3 +159,32 @@ app.get('/api/lanches', (req, res) => {
     ];
     res.json(lanches);
 });
+
+app.use((req, res) => {
+    res.status(404).send(`
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>DevBurguer</title>
+                <link rel="stylesheet" href="/css/style.css">
+                <link rel="icon" href="/images/devburger-icon.ico" type="image/x-icon">
+            </head>
+            <body>
+                <header>
+                    <img src="/images/logo.png" alt="DevBurguer Logo" class="logo">
+                </header>
+            <main>
+                <h2>Erro 404! Página não encontrada</h2>
+                <p>Desculpe, a página que você está procurando não existe.</p>
+                <p>Por favor, verifique o endereço ou volte para a página inicial.</p>
+            </main>
+
+            <a id="link-pag-externa" href="/">Voltar para a página inicial</a>
+            <footer>
+                <p>&copy; 2025 DevBurguer. Todos os direitos reservados.</p>
+            </footer>
+        </body>
+    </html>`);
+})
